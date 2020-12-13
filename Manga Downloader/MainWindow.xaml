@@ -1,0 +1,50 @@
+﻿<Window x:Class="Manga_Downloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Manga_Downloader"
+        mc:Ignorable="d"
+        Title="Manga Downloader" Height="530" Width="800" ResizeMode="CanMinimize" Icon="books.png">
+    <Grid>
+        <Label Content="Manga Downloader" HorizontalAlignment="Left" Margin="315,16,0,0" VerticalAlignment="Top" FontSize="18" Width="170"/>
+        <TextBox x:Name="txtLink" Text="Please input link to the gallery page..." Foreground="#FFAAAAAA" HorizontalAlignment="Left" Height="23" Margin="275,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
+        <Label Content="Supports Bato.to, Mangapark, Toonily" HorizontalAlignment="Left" Margin="275,83,267,0" VerticalAlignment="Top" RenderTransformOrigin="2.526,0.654" Width="250" IsHitTestVisible="False" HorizontalContentAlignment="Center" Foreground="#FFAAAAAA"/>
+
+        <Label x:Name="lblPreTitle" Content="Title:" HorizontalAlignment="Left" Margin="223,115,0,0" VerticalAlignment="Top" Width="65" Visibility="Hidden"/>
+        <Label x:Name="lblTitle" Content="" HorizontalAlignment="Left" Margin="293,115,0,0" VerticalAlignment="Top" Width="299" Visibility="Hidden"/>
+
+        <Label x:Name="lblPreChapters" Content="Chapters:" HorizontalAlignment="Left" Margin="223,142,0,0" VerticalAlignment="Top" Width="60" Visibility="Hidden"/>
+        <Label x:Name="lblChapters" Content="" HorizontalAlignment="Left" Margin="293,142,0,0" VerticalAlignment="Top" Width="299" Visibility="Hidden"/>
+
+        <Image x:Name="imgCover" HorizontalAlignment="Left" Height="208" Margin="10,16,0,0" VerticalAlignment="Top" Width="208" Visibility="Hidden"/>
+
+        <Label x:Name="lblPreLocation" Content="Location:" HorizontalAlignment="Left" Margin="223,170,0,0" VerticalAlignment="Top" Width="60" Visibility="Hidden"/>
+        <TextBox x:Name="txtLocation" HorizontalAlignment="Left" Height="23" Margin="293,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="299" IsEnabled="False" Visibility="Hidden"/>
+
+        <Label x:Name="lblPreDownload" Content="Download from" HorizontalAlignment="Left" Margin="223,196,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <ComboBox x:Name="cbFirst" HorizontalAlignment="Left" Margin="321,200,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <Label x:Name="lblPreTo" Content="to" HorizontalAlignment="Left" Margin="446,196,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.19,-0.192" Visibility="Hidden"/>
+        <ComboBox x:Name="cbLast" HorizontalAlignment="Left" Margin="472,200,0,0" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+
+        <Button x:Name="btnChoose" Content="Choose" HorizontalAlignment="Left" Margin="597,173,0,0" VerticalAlignment="Top" Width="75" Visibility="Hidden"/>
+        <Button x:Name="btnDownload" Content="Download" HorizontalAlignment="Left" Margin="597,200,0,0" VerticalAlignment="Top" Width="75" Visibility="Hidden"/>
+
+        <DataGrid x:Name="dgvProgress" HorizontalAlignment="Left" Height="250" Margin="10,229,0,0" VerticalAlignment="Top" Width="765" Visibility="Hidden" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Title, Mode=OneWay}"  Header="Chapter" Width="2*"/>
+                <DataGridTemplateColumn Header="Progress" Width="6*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <ProgressBar Value="{Binding Path=Progress, Mode=OneWay}" Maximum="100"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=ProgressText, Mode=OneWay}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Path=Status, Mode=OneWay}" Header="Status" Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
